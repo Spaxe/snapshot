@@ -1,0 +1,186 @@
+/* CSIRO-specific branding */
+@font-face {
+  font-family: UnitRounded;
+  src: url(https://www.csiro.au/themes/default/font/UnitRoundedWeb-Bold.woff) format("woff");
+  font-weight: 400;
+  font-style: normal
+}
+
+.decision-vis a {
+    border-bottom: 1px solid transparent;
+    color: #1E22AA;
+    font-weight: 400;
+    line-height: 1.3rem;
+    text-decoration: none
+}
+
+.decision-vis  a:hover {
+    border-bottom: 1px solid #2DCCD3;
+    color: #007377;
+    transition: box-shadow .2s ease 0s, color .2s ease 0s
+}
+
+.decision-vis a:focus {
+    box-shadow: 0 0 1px 2px #009DC0;
+    transition: box-shadow .2s ease 0s, color .2s ease 0s;
+    outline: none;
+    outline-offset: 0px;
+    box-sizing: content-box;
+}
+
+/* Decision visualisation specific */
+
+.decision-vis {
+  font: 14px/18px 'Open Sans', sans-serif;
+  box-sizing: padding-box;
+  width: 800px;
+  margin: 0 auto;
+  padding: 10px 5px;
+  position: relative;
+}
+
+.decision-vis h1 {
+  font-family: 'UnitRounded';
+  font-size: 200%;
+}
+
+.decision-vis h2 {
+  font-family: 'UnitRounded';
+  font-size: 140%;
+  margin-top: 20px;
+}
+
+.decision-vis .flex {
+  display: flex;
+}
+
+.decision-vis .row {
+  flex-direction: row;
+}
+
+.decision-vis .col {
+  flex-direction: column;
+}
+
+.decision-vis .banner .image {
+  flex: 0 0 35%;
+  position: relative;
+}
+
+.decision-vis .banner .image img {
+  width: 100%;
+}
+
+.decision-vis .banner .description {
+  flex: 0 0 65%;
+  padding-left: 15px;
+}
+
+.decision-vis .banner *:first-child {
+  margin-top: 0;
+}
+
+.decision-vis .banner *:last-child {
+  margin-bottom: 0;
+}
+
+.decision-vis .left-pane {
+  flex: 0 0 200px;
+}
+
+.decision-vis .control .toggle {
+  display: block;
+  margin: 10px 0;
+  padding: 3px 8px;
+  border: 0.5px solid rgba(30, 34, 170, 0.5);
+}
+
+.decision-vis .control .toggle:hover {
+  background: rgba(0, 157, 192, 0.1);
+}
+
+.decision-vis .control input:checked + .toggle {
+  border: 1px solid rgba(30, 34, 170, 1);
+  background: rgba(30, 34, 170, 0.2);
+}
+
+.decision-vis .control input:checked + .toggle:hover {
+  border: 1px solid rgba(0, 157, 192, 1);
+  background: rgba(0, 157, 192, 0.1);
+}
+
+/* Hide the checkbox in favour of display toggle */
+.decision-vis .control input {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.decision-vis .chart {
+  margin-left: 20px;
+}
+
+.decision-vis .chart .threshold {
+  stroke: red;
+  stroke-width: 0.5px;
+}
+
+.decision-vis .chart .line {
+  stroke: black;
+  stroke-width: 1px;
+  fill: none;
+}
+
+.decision-vis .chart .line.highlight {
+  stroke: rgba(30, 34, 170, 1);
+}
+
+.decision-vis .chart .area {
+  stroke: none;
+  fill: rgba(30, 34, 170, 0.3);
+}
+
+.decision-vis .chart .axis > text {
+  fill: black;
+}
+
+.decision-vis .chart .grid line {
+  stroke: rgba(0, 0, 0, 0.1);
+}
+
+.decision-vis .chart .grid path {
+  stroke: none;
+}
+
+.decision-vis .metric {
+  padding: 0px 50px;
+}
+
+.decision-vis .metric .highlight {
+  font-weight: bold;
+  color: rgba(30, 34, 170, 1);
+}
+
+.decision-vis .explanation {
+  padding: 20px 50px 10px 50px;
+}
+
+.decision-vis .explanation .subtext-title {
+  font-weight: bold;
+}
+
+.decision-vis .explanation > p {
+  flex: 0 0 50%;
+  margin-top: 0;
+  padding-right: 20px;
+}
+
+.decision-vis .explanation .image {
+  flex: 0 0 50%;
+  position: relative;
+  height: 200px;
+}
+
+.decision-vis .explanation .image img {
+  width: 100%;
+}
