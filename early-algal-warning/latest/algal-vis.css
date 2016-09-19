@@ -807,6 +807,9 @@ img.leaflet-pelias-layer-icon {
       font-size: 14px;
       line-height: 18px;
       border-bottom: 1px solid #CDD3DE; }
+      #algal-vis-root .component .component-title .show-on-map {
+        margin-left: 12px;
+        font-size: 75%; }
     #algal-vis-root .component .component-options {
       flex: 0 1 30px;
       padding: 5px 20px;
