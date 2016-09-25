@@ -1,0 +1,12 @@
+{
+  "project_name": "Albatross Population",
+  "project_type": "albatross",
+  "data_path": "data/albatross.csv",
+  "explanation_path": "data/explanations.csv",
+  "general_intro_path": "data/general_intro.md",
+  "constant_limit": "Limit",
+  "x_label": "Year",
+  "y_label": "Breeding Pairs",
+  "explanation_pic_prefix": "pictures/option",
+  "explanation_pic_postfix": ".jpg"
+}
