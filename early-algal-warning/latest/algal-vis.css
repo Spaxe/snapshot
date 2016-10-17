@@ -889,11 +889,10 @@ img.leaflet-pelias-layer-icon {
       stroke: black;
       stroke-width: 2px;
       fill: none; }
-      #algal-vis-root .chart path.line.thin {
-        stroke-width: 1px; }
-      #algal-vis-root .chart path.line.active {
-        stroke: #6699CC;
-        stroke-width: 1px; }
+    #algal-vis-root .chart path.active {
+      stroke: #6699CC;
+      stroke-width: 1px;
+      fill: none; }
     #algal-vis-root .chart circle.point {
       stroke: transparent;
       fill: #1B2B34; }
