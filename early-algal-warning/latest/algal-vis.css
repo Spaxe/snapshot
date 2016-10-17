@@ -771,7 +771,7 @@ img.leaflet-pelias-layer-icon {
     #algal-vis-root .component.secondary {
       flex: 0 1 150px; }
     #algal-vis-root .component.trend {
-      flex: 0 1 250px; }
+      flex: 0 1 300px; }
     #algal-vis-root .component.hide {
       flex: 0 1 0px; }
     #algal-vis-root .component input, #algal-vis-root .component select, #algal-vis-root .component textarea {
@@ -878,6 +878,11 @@ img.leaflet-pelias-layer-icon {
     background: #FAC863; }
   #algal-vis-root .map-bg-red {
     background: #EC5f67; }
+  #algal-vis-root .satellite-paths {
+    stroke: #6699CC;
+    stroke-width: 1px;
+    fill: #6699CC;
+    fill-opacity: 0.1; }
   #algal-vis-root .chart {
     /* http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting */ }
     #algal-vis-root .chart path.line {
@@ -890,9 +895,8 @@ img.leaflet-pelias-layer-icon {
         stroke: #6699CC;
         stroke-width: 1px; }
     #algal-vis-root .chart circle.point {
-      stroke: black;
-      stroke-width: 0.5px;
-      fill: #6699CC; }
+      stroke: transparent;
+      fill: #1B2B34; }
     #algal-vis-root .chart text {
       font: 11px 'Open Sans', sans-serif;
       fill: #343D46; }
@@ -924,7 +928,7 @@ img.leaflet-pelias-layer-icon {
       stroke: none;
       fill: transparent;
       pointer-events: all;
-      cursor: move; }
+      cursor: ew-resize; }
   #algal-vis-root .leaflet-container {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
