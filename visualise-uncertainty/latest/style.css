@@ -1,11 +1,4 @@
 /* CSIRO-specific branding */
-@font-face {
-  font-family: UnitRounded;
-  src: url(https://www.csiro.au/themes/default/font/UnitRoundedWeb-Bold.woff) format("woff");
-  font-weight: 400;
-  font-style: normal;
-}
-
 .decision-vis a {
     border-bottom: 1px solid transparent;
     color: #1E22AA;
@@ -40,14 +33,17 @@
 }
 
 .decision-vis h1 {
-  font-family: 'UnitRounded';
+  font-family: 'Open Sans';
   font-size: 200%;
+  line-height: 1.15;
+  font-weight: 600;
 }
 
 .decision-vis h2 {
-  font-family: 'UnitRounded';
+  font-family: 'Open Sans';
   font-size: 140%;
   margin-top: 20px;
+  font-weight: 600;
 }
 
 .decision-vis .flex {
