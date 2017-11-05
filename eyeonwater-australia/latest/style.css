@@ -1,0 +1,55 @@
+body {
+  font: 16px/24px 'Open Sans', sans-serif;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+}
+
+h1.title {
+  font-size: 28px;
+}
+
+#sketchplots {
+  width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#sketchplots svg {
+  font: 16px/24px 'Open Sans', sans-serif;
+  margin: 0 auto;
+  display: block;
+}
+
+#sketchplots text.label {
+  font: 10px/14px 'Open Sans', sans-serif;
+}
+
+#sketchplots .tooltip {
+  position: absolute;
+  z-index: 2;
+  background: #222;
+  color: white;
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+#sketchplots .subtitle {
+  color: #AAA;
+  font-size: 12px;
+  font-style: italic;
+  text-align: center;
+  margin-top: 0;
+}
+
+#sketchplots .world {
+  stroke-width: 0.25px;
+  stroke: black;
+  fill: transparent;
+}
+
+#sketchplots .hexagon {
+  stroke: white;
+  stroke-width: 0.25px;
+}
