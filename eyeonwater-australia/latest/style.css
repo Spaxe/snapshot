@@ -53,3 +53,14 @@ h1.title {
   stroke: white;
   stroke-width: 0.25px;
 }
+
+#sketchplots .line {
+  fill: none;
+  stroke-width: 1.5;
+  stroke: #2158bc;
+}
+
+#sketchplots .driven {
+  font-weight: 600;
+  color: #2158bc;
+}

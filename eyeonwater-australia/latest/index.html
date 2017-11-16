@@ -1,105 +1,131 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Hexbin Map</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body>
-    <article id="sketchplots">
+<head>
+  <meta charset='utf-8'/>
+  <title>EoW Exploration</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
+  <style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+    .popup-image { height: 240px; }
+  </style>
+</head>
+<body>
 
-      <h1 class="title">EyeOnWater Sketchplots</h1>
-      <p>Xavier Ho | status: <em>draft</em> | updated <timee>2017.11.05</time></p>
-      <p>
-        This is a series of data sketches and plotting explorations, which I call
-        sketchplots. The goal is to dive deep into <a href="http://www.eyeonwater.org/">EyeOnWater</a>
-        colour data and visualise interesting trends. EyeOnWater is a citizen
-        science intitiative with an app that supports water colour measurement
-        anyone can do on a smartphone. Data is <a href="http://www.citclops.eu/search/welcome.php">open access</a>.
-      </p>
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic3BheGUiLCJhIjoiY2lsaXYyamV1M2x5N3V1bWN3NWwwenlubyJ9.L6ndidT7dvBgyOcYo1VFgw';
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/outdoors-v10',
+  center: [137.734, -29.683], // starting position
+  hash: true,
+  zoom: 3.75,
+});
 
-      <p>
-        I downloaded the entire historical colour dataset, which ranges from
-        1930 - 2013. The colour measurements were probably taken during voyages
-        across the sea. They are indexed by <a href="https://en.wikipedia.org/wiki/Forel-Ule_scale">Forel-Ule</a>.
-      </p>
+map.on('load', function () {
+  // Add a source and layer displaying a point which will be animated in a circle.
+  map.addSource('app_colours_aus', {
+    'type': 'geojson',
+    'data': 'data/app_colours_aus.json',
+  });
 
-      <div id="forel-ule">
-        <h2 class="title">The Forel-Ule Index</h2>
-        <svg width="800" height="60"></svg>
-        <p class="subtitle">Each colour is mapped to an index number</p>
-      </div>
+  map.addLayer({
+    'id': 'app_colours_aus',
+    'source': 'app_colours_aus',
+    'type': 'circle',
+    'paint': {
+      'circle-radius': {
+        stops: [
+          [0 , 1.5],
+          [6 , 2.5],
+          [22 , 9.5],
+        ],
+      },
+      'circle-color': {
+        property: 'fu_value',
+        type: 'interval',
+        stops: [
+          [1 , '#2158bc'],
+          [2 , '#316dc5'],
+          [3 , '#327cbb'],
+          [4 , '#4b80a0'],
+          [5 , '#568f96'],
+          [6 , '#6d9298'],
+          [7 , '#698c86'],
+          [8 , '#759e72'],
+          [9 , '#7ba654'],
+          [10, '#7dae38'],
+          [11, '#95b645'],
+          [12, '#94b660'],
+          [13, '#a5bc76'],
+          [14, '#aab86d'],
+          [15, '#adb55f'],
+          [16, '#a8a965'],
+          [17, '#ae9f5c'],
+          [18, '#b3a053'],
+          [19, '#af8a44'],
+          [20, '#a46905'],
+          [21, '#a14d04'],
+        ]
+      },
+      'circle-stroke-width': {
+        stops: [
+          [0 , 1.5],
+          [6 , 2.5],
+          [22 , 9.5],
+        ],
+      },
+      'circle-stroke-color': {
+        property: 'fu_processed',
+        type: 'interval',
+        stops: [
+          [1 , '#2158bc'],
+          [2 , '#316dc5'],
+          [3 , '#327cbb'],
+          [4 , '#4b80a0'],
+          [5 , '#568f96'],
+          [6 , '#6d9298'],
+          [7 , '#698c86'],
+          [8 , '#759e72'],
+          [9 , '#7ba654'],
+          [10, '#7dae38'],
+          [11, '#95b645'],
+          [12, '#94b660'],
+          [13, '#a5bc76'],
+          [14, '#aab86d'],
+          [15, '#adb55f'],
+          [16, '#a8a965'],
+          [17, '#ae9f5c'],
+          [18, '#b3a053'],
+          [19, '#af8a44'],
+          [20, '#a46905'],
+          [21, '#a14d04'],
+        ]
+      },
+    }
+  }, 'place-city-sm');
 
-      <p>
-        The Forel-Ule index is a rough but useful indicator for the water type.
-        While there are many factors that may result in the same colour, we can
-        use it as a baseline the compare nonetheless, and it is easy to measure.
-      </p>
+  map.on('click', 'app_colours_aus', function (e) {
+    new mapboxgl.Popup()
+        .setLngLat(e.features[0].geometry.coordinates)
+        .setHTML(`
+          <img class="popup-image" src="${e.features[0].properties.image}">
+          `)
+        .addTo(map);
+  });
 
-      <p>
-        If we group nearby measurements and display the most recent
-        measurements, it look like this on the world map. Hover over each
-        hexagon to see the data point.
-      </p>
+  map.on('mouseenter', 'app_colours_aus', function () {
+      map.getCanvas().style.cursor = 'pointer';
+  });
+  map.on('mouseleave', 'app_colours_aus', function () {
+      map.getCanvas().style.cursor = '';
+  });
+});
 
-      <div id="water-map">
-        <svg width="900" height="600"></svg>
-        <p class="subtitle">Historical water colours collected between 1930 - 2013</p>
-      </div>
+</script>
 
-      <p>
-        The plot is drawn in chronological order, from the earliest to the
-        latest.
-      </p>
-
-      <p>
-        We can plot the data points over time to see the frequency of colours
-        over time.
-      </p>
-
-      <div id="fu-distribution">
-        <svg width="900" height="450"></svg>
-        <p class="subtitle">Distribution of Forel-Ule colour measured over time</p>
-      </div>
-
-      <p>
-        The distribution of colours is largely found in the blue-aqua colour,
-        and there was a significant amount of data collected between 1970 and
-        2000.
-      </p>
-
-      <h1>EyeOnWater Australia</h1>
-
-      <p>
-        We will focus on Australia with the EyeOnWater data from 2015 onwards.
-        The scatterplot below is the time distribution of each measurement.
-        Hover over each point to see correlating data between plots.
-      </p>
-
-      <div id="aus-map">
-        <svg id="aus-map-extent" width="600" height="500"></svg>
-        <svg id="aus-map-timeline" width="600" height="100"></svg>
-        <p class="subtitle">EyeOnWater data in Australia, 2015 - 2017</p>
-      </div>
-
-      <p>
-        Interestingly, most of the measurements in the last yaer were done in
-        Melbourne, while most of the measurements done in 2016 were in Brisbane.
-      </p>
-
-    </article>
-
-    <!-- Clip paths -->
-    <svg width="0" height="0">
-      <defs>
-        <clipPath id="hex" clipPathUnits="objectBoundingBox">
-          <polygon points="0.5 0, 1 0.25, 1 0.75, 0.5 1, 0 0.75, 0 0.25" />
-        </clipPath>
-      </defs>
-    </svg>
-
-    <script src="hexbin.min.js"></script>
-
-  </body>
+</body>
 </html>
