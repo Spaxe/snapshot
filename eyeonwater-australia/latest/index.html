@@ -1,131 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset='utf-8'/>
-  <title>EoW Exploration</title>
-  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
-  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
+  <meta charset="utf-8">
+  <title>EyeOnWater Explorations</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style.css">
   <style>
-    body { margin:0; padding:0; }
-    #map { position:absolute; top:0; bottom:0; width:100%; }
-    .popup-image { height: 240px; }
+    body {
+      margin: 0; padding: 0;
+      display: flex;
+      flex-direction: row;
+      width: 100vw;
+    }
+    nav {
+      flex: 0 0 180px;
+      height: 100vh;
+      box-sizing: border-box;
+      margin: 50px 15px 5px 25px;
+      font-size: 14px;
+      color: #AAA;
+    }
+    nav a {
+      color:
+    }
+    iframe {
+      flex: 1 1 auto;
+      border: 0; height: 100vh;
+    }
   </style>
 </head>
 <body>
-
-<div id='map'></div>
-<script>
-mapboxgl.accessToken = 'pk.eyJ1Ijoic3BheGUiLCJhIjoiY2lsaXYyamV1M2x5N3V1bWN3NWwwenlubyJ9.L6ndidT7dvBgyOcYo1VFgw';
-var map = new mapboxgl.Map({
-  container: 'map',
-  style: 'mapbox://styles/mapbox/outdoors-v10',
-  center: [137.734, -29.683], // starting position
-  hash: true,
-  zoom: 3.75,
-});
-
-map.on('load', function () {
-  // Add a source and layer displaying a point which will be animated in a circle.
-  map.addSource('app_colours_aus', {
-    'type': 'geojson',
-    'data': 'data/app_colours_aus.json',
-  });
-
-  map.addLayer({
-    'id': 'app_colours_aus',
-    'source': 'app_colours_aus',
-    'type': 'circle',
-    'paint': {
-      'circle-radius': {
-        stops: [
-          [0 , 1.5],
-          [6 , 2.5],
-          [22 , 9.5],
-        ],
-      },
-      'circle-color': {
-        property: 'fu_value',
-        type: 'interval',
-        stops: [
-          [1 , '#2158bc'],
-          [2 , '#316dc5'],
-          [3 , '#327cbb'],
-          [4 , '#4b80a0'],
-          [5 , '#568f96'],
-          [6 , '#6d9298'],
-          [7 , '#698c86'],
-          [8 , '#759e72'],
-          [9 , '#7ba654'],
-          [10, '#7dae38'],
-          [11, '#95b645'],
-          [12, '#94b660'],
-          [13, '#a5bc76'],
-          [14, '#aab86d'],
-          [15, '#adb55f'],
-          [16, '#a8a965'],
-          [17, '#ae9f5c'],
-          [18, '#b3a053'],
-          [19, '#af8a44'],
-          [20, '#a46905'],
-          [21, '#a14d04'],
-        ]
-      },
-      'circle-stroke-width': {
-        stops: [
-          [0 , 1.5],
-          [6 , 2.5],
-          [22 , 9.5],
-        ],
-      },
-      'circle-stroke-color': {
-        property: 'fu_processed',
-        type: 'interval',
-        stops: [
-          [1 , '#2158bc'],
-          [2 , '#316dc5'],
-          [3 , '#327cbb'],
-          [4 , '#4b80a0'],
-          [5 , '#568f96'],
-          [6 , '#6d9298'],
-          [7 , '#698c86'],
-          [8 , '#759e72'],
-          [9 , '#7ba654'],
-          [10, '#7dae38'],
-          [11, '#95b645'],
-          [12, '#94b660'],
-          [13, '#a5bc76'],
-          [14, '#aab86d'],
-          [15, '#adb55f'],
-          [16, '#a8a965'],
-          [17, '#ae9f5c'],
-          [18, '#b3a053'],
-          [19, '#af8a44'],
-          [20, '#a46905'],
-          [21, '#a14d04'],
-        ]
-      },
+  <nav id="menu">
+    <h2>EOW Explorations</h2>
+    <h3><a href="#sketchplot" onclick="document.getElementById('main').src = 'hexbin.html';">Sketchplots</a></h3>
+    <h3><a href="#datamap" onclick="document.getElementById('main').src = 'datamap.html';">Data Map</a></h3>
+  </nav>
+  <iframe id="main" src="hexbin.html" type="content"></iframe>
+  <script>
+    var link = window.location.href.toString().split('#')[1];
+    if (link === 'sketchplot') {
+      document.getElementById('main').src = 'hexbin.html';
+    } else if (link === 'datamap') {
+      document.getElementById('main').src = 'datamap.html';
     }
-  }, 'place-city-sm');
-
-  map.on('click', 'app_colours_aus', function (e) {
-    new mapboxgl.Popup()
-        .setLngLat(e.features[0].geometry.coordinates)
-        .setHTML(`
-          <img class="popup-image" src="${e.features[0].properties.image}">
-          `)
-        .addTo(map);
-  });
-
-  map.on('mouseenter', 'app_colours_aus', function () {
-      map.getCanvas().style.cursor = 'pointer';
-  });
-  map.on('mouseleave', 'app_colours_aus', function () {
-      map.getCanvas().style.cursor = '';
-  });
-});
-
-</script>
-
+  </script>
 </body>
 </html>

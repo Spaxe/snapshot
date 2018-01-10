@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>EyeOnWater Explorations</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    body {
+      margin: 0; padding: 0;
+      display: flex;
+      flex-direction: row;
+      width: 100vw;
+    }
+    nav {
+      flex: 0 0 180px;
+      height: 100vh;
+      box-sizing: border-box;
+      margin: 50px 15px 5px 25px;
+      font-size: 14px;
+      color: #AAA;
+    }
+    nav a {
+      color:
+    }
+    iframe {
+      flex: 1 1 auto;
+      border: 0; height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <nav id="menu">
+    <h2>EOW Explorations</h2>
+    <h3><a href="#sketchplot" onclick="document.getElementById('main').src = 'hexbin.html';">Sketchplots</a></h3>
+    <h3><a href="#datamap" onclick="document.getElementById('main').src = 'datamap.html';">Data Map</a></h3>
+  </nav>
+  <iframe id="main" src="hexbin.html" type="content"></iframe>
+  <script>
+    var link = window.location.href.toString().split('#')[1];
+    if (link === 'sketchplot') {
+      document.getElementById('main').src = 'hexbin.html';
+    } else if (link === 'datamap') {
+      document.getElementById('main').src = 'datamap.html';
+    }
+  </script>
+</body>
+</html>
