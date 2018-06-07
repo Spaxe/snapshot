@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CSV Compare</title>
+  <link rel="stylesheet" href="/handsontable.full.b9992bef.css" type="text/css">
+  <link rel="stylesheet" href="/basscss.8332cf09.css" type="text/css">
+  <link rel="stylesheet" href="/style.f0096fe4.css" type="text/css">
+<script src="/handsontable.full.b9992bef.js"></script><script src="/basscss.8332cf09.js"></script><script src="/style.f0096fe4.js"></script></head>
+<body>
+  <main class="flex flex-column pl2 pr2 pb2" style="box-sizing: border-box; width: 100vw; height: 100vh">
+    <h1 class="block sm-flex">CSV Compare</h1>
+
+    <div class="flex sm-flex">
+      <div class="col-6">
+        <span>Match header </span><input id="keyA" type="text" title="Primary column" value="email">
+      </div>
+      <div class="col-6">
+        <span>with header </span><input id="keyB" type="text" title="Primary column" value="email">
+      </div>
+    </div>
+
+    <div class="flex">
+      <div class="col-6">
+        <label><input type="file" name="csvA" id="csvA" title="First CSV File to compare with"></label>
+      </div>
+
+      <div class="col-6">
+        <label><input type="file" name="csvB" id="csvB" title="Second CSV File to compare with"></label>
+      </div>
+    </div>
+
+    <button id="submit" class="mt2 mb2">Show unique rows</button>
+
+    <div class="clearfix flex-auto relative">
+      <div id="onlyA" class="table-display col col-6 overflow-scroll border-right"></div>
+      <div id="onlyB" class="table-display col col-6 overflow-scroll border-left"></div>
+    </div>
+  </main>
+
+  <script src="/csv-compare.1876af59.js"></script>
+</body>
+</html>
